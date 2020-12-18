@@ -16,7 +16,7 @@ function Dashboard () {
                 <div id="layoutSidenav">
                     <div id="layoutSidenav_content">
                         <Switch>
-                        <Route path='/' component={Staff} />
+                        <Route path='/staff' component={Staff} />
                         </Switch>
                         <Footer />
                     </div>

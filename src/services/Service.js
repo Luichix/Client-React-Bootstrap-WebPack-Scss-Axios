@@ -1,20 +1,20 @@
 import api from '../api/axios'
 
-// const getAll = () => {
-//   return api.get('/Content')
+const getAll = () => {
+  return api.get('/staff')
+}
+
+// const create = data => {
+//   return api.post('/', data)
+// }
+
+// const signup = data => {
+//   return api.post('/signup', data)
 // }
 
 // const get = id => {
 //   return api.get(`/Content/${id}`)
 // }
-
-const create = data => {
-  return api.post('/', data)
-}
-
-const signup = data => {
-  return api.post('/signup', data)
-}
 
 // const update = (id, data) => {
 //   return api.put(`/Content/${id}`, data)
@@ -33,11 +33,10 @@ const signup = data => {
 // }
 
 export default {
-  // getAll,
+  getAll
+  // ,create,
+  // signup
   // get,
-  create,
-  signup
-  // ,
   // update,
   // remove,
   // removeAll,

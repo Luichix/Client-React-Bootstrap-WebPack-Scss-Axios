@@ -57,6 +57,7 @@ const Recruitment = () => {
       paymentMethod: Data.paymentMethod
     }
     console.log(data.startContrat)
+
     Service.create(data).then(response => {
       setData({
         id: response.data.id,

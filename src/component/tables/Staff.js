@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Table, Button, Modal } from 'react-bootstrap'
 import Recruitment from '../form/Recruitment'
+import Service from './../../services/Service'
 
 function MyVerticallyCenteredModal (props) {
   return (
@@ -26,13 +27,20 @@ function MyVerticallyCenteredModal (props) {
   )
 }
 
-const animeflv = [
-  { id: 1, personaje: 'Naruto', anime: 'Naruto' },
-  { id: 2, personaje: 'Goku', anime: 'Dragon Ball' }
-]
-
 const Staff = () => {
   const [modalShow, setModalShow] = useState(false)
+  const [staff, setStaff] = useState([])
+
+  useEffect(() => {
+    obtenerDatos()
+  }, [])
+
+  const obtenerDatos = async () => {
+    Service.getAll().then(res => {
+      setStaff(res.data)
+      console.log(res.data)
+    })
+  }
 
   return (
     <Container className="p-4 col-md-10">
@@ -40,16 +48,42 @@ const Staff = () => {
   <thead>
     <tr>
       <th>Id</th>
-      <th>Personaje</th>
-      <th>Anime</th>
+      <th>Lastname</th>
+      <th>Firstname</th>
+      <th>Card</th>
+      <th>Phone</th>
+      <th>Type Contract</th>
+      <th>Start Contract</th>
+      <th>Finish Contract</th>
+      <th>Area</th>
+      <th>Job</th>
+      <th>Monthly Salary</th>
+      <th>Regime</th>
+      <th>Work Day</th>
+      <th>Time Control</th>
+      <th>Payment Method</th>
+      <th>Published</th>
     </tr>
   </thead>
   <tbody>
-    {animeflv.map((elemento) => (
+    {staff.map((elemento) => (
       <tr key={elemento.id} >
         <td>{elemento.id}</td>
-        <td>{elemento.personaje}</td>
-        <td>{elemento.anime}</td>
+        <td>{elemento.lastname}</td>
+        <td>{elemento.firstname}</td>
+        <td>{elemento.card}</td>
+        <td>{elemento.phone}</td>
+        <td>{elemento.typeContract}</td>
+        <td>{elemento.startContract}</td>
+        <td>{elemento.finishContract}</td>
+        <td>{elemento.area}</td>
+        <td>{elemento.job}</td>
+        <td>{elemento.monthlySalary}</td>
+        <td>{elemento.regime}</td>
+        <td>{elemento.workday}</td>
+        <td>{elemento.timeControl}</td>
+        <td>{elemento.paymentMethod}</td>
+        <td>{elemento.published}</td>
       </tr>
     ))}
 
