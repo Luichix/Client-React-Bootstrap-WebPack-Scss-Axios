@@ -4,6 +4,10 @@
 // Import Bootstrap
 @import "bootstrap/scss/bootstrap.scss";
 
+// Import React-Bootstrap-Table
+@import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+@import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
+
 // Import Custom SCSS
 @import "global.scss";
 

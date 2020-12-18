@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react'
-import { Container, Table, Button, Modal } from 'react-bootstrap'
+import { Container, Spinner, Button, Modal } from 'react-bootstrap'
 import Recruitment from '../form/Recruitment'
 import Service from './../../services/Service'
+import BootstrapTable from 'react-bootstrap-table-next'
+import PaginationFactory from 'react-bootstrap-table2-paginator'
 
 function MyVerticallyCenteredModal (props) {
   return (
@@ -30,72 +32,81 @@ function MyVerticallyCenteredModal (props) {
 const Staff = () => {
   const [modalShow, setModalShow] = useState(false)
   const [staff, setStaff] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     obtenerDatos()
   }, [])
 
   const obtenerDatos = async () => {
-    Service.getAll().then(res => {
-      setStaff(res.data)
-      console.log(res.data)
-    })
+    try {
+      Service.getAll().then(res => {
+        setStaff(res.data)
+        setLoading(true)
+        console.log(res.data)
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  const columns = [
+    { dataField: 'id', text: 'Id', align: 'center', headerAlign: 'center' },
+    { dataField: 'firstname', text: 'First Name', align: 'center', headerAlign: 'center' },
+    { dataField: 'lastname', text: 'Last Name', align: 'center', headerAlign: 'center' },
+    { dataField: 'card', text: 'Card', align: 'center', headerAlign: 'center' },
+    { dataField: 'phone', text: 'Phone', align: 'center', headerAlign: 'center' },
+    { dataField: 'typeContract', text: 'Type Contract', align: 'center', headerAlign: 'center' },
+    { dataField: 'startContract', text: 'Start Contract', align: 'center', headerAlign: 'center' },
+    { dataField: 'finishContract', text: 'Finish Contract', align: 'center', headerAlign: 'center' },
+    { dataField: 'area', text: 'Area', align: 'center', headerAlign: 'center' },
+    { dataField: 'job', text: 'Job', align: 'center', headerAlign: 'center' },
+    { dataField: 'monthlySalary', text: 'Monthly Salary', align: 'center', headerAlign: 'center' },
+    { dataField: 'regime', text: 'Regime', align: 'center', headerAlign: 'center' },
+    { dataField: 'workday', text: 'Workday', align: 'center', headerAlign: 'center' },
+    { dataField: 'timeControl', text: 'Time Control', align: 'center', headerAlign: 'center' },
+    { dataField: 'paymentMethod', text: 'Payment Method', align: 'center', headerAlign: 'center' }
+  ]
+  const selectRow = {
+    mode: 'checkbox',
+    clickToSelect: true,
+    bgColor: '#00BFFF'
+  }
+
+  const tableStaff = () => {
+    return (
+      <BootstrapTable
+      keyField='id'
+      data={staff}
+      columns={columns}
+      selectRow={selectRow}
+      pagination={PaginationFactory()}
+      striped
+      hover
+      condensed
+    />
+    )
+  }
+  const spinnerStaff = () => {
+    return (
+      <Spinner
+        animation= "border"
+      />
+    )
   }
 
   return (
-    <Container className="p-4 col-md-10">
-<Table striped bordered hover>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Lastname</th>
-      <th>Firstname</th>
-      <th>Card</th>
-      <th>Phone</th>
-      <th>Type Contract</th>
-      <th>Start Contract</th>
-      <th>Finish Contract</th>
-      <th>Area</th>
-      <th>Job</th>
-      <th>Monthly Salary</th>
-      <th>Regime</th>
-      <th>Work Day</th>
-      <th>Time Control</th>
-      <th>Payment Method</th>
-      <th>Published</th>
-    </tr>
-  </thead>
-  <tbody>
-    {staff.map((elemento) => (
-      <tr key={elemento.id} >
-        <td>{elemento.id}</td>
-        <td>{elemento.lastname}</td>
-        <td>{elemento.firstname}</td>
-        <td>{elemento.card}</td>
-        <td>{elemento.phone}</td>
-        <td>{elemento.typeContract}</td>
-        <td>{elemento.startContract}</td>
-        <td>{elemento.finishContract}</td>
-        <td>{elemento.area}</td>
-        <td>{elemento.job}</td>
-        <td>{elemento.monthlySalary}</td>
-        <td>{elemento.regime}</td>
-        <td>{elemento.workday}</td>
-        <td>{elemento.timeControl}</td>
-        <td>{elemento.paymentMethod}</td>
-        <td>{elemento.published}</td>
-      </tr>
-    ))}
+    <Container className="p-4 col-md-4">
 
-  </tbody>
-</Table>
-    <Button variant="primary" onClick={() => setModalShow(true)}>
+      <Button variant="primary" onClick={() => setModalShow(true)}>
         Recruitment Form
-    </Button>
-    <MyVerticallyCenteredModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
+      </Button>
+
+      <MyVerticallyCenteredModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+        />
+        {
+        loading ? tableStaff() : spinnerStaff() }
     </Container>
   )
 }
