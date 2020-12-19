@@ -29,6 +29,12 @@ const sassRules = {
   ]
 }
 
+const mapRules = {
+  test: /\.js$/,
+  enforce: 'pre',
+  use: ['source-map-loader']
+}
+
 const javascriptRules = {
   test: /\.js$/,
   exclude: /node_modules/,
@@ -49,7 +55,7 @@ module.exports = {
     filename: 'app.[contentHash].js'
   },
   module: {
-    rules: [javascriptRules, sassRules, imageRules]
+    rules: [javascriptRules, sassRules, imageRules, mapRules]
   },
   plugins: [
     new HtmlWebpackPlugin({

@@ -12,3 +12,9 @@ body {
   padding-left: $grid-gutter-width;
   padding-right: $grid-gutter-width;
 }
+
+.clase {
+  white-space: nowrap;
+  overflow-x: auto;
+
+}

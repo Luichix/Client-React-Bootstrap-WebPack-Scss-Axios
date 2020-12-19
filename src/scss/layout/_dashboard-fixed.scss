@@ -1,11 +1,11 @@
 .sb-nav-fixed {
+  background-color:white;
   .sb-topnav {
-    @extend .fixed-top;
+
     z-index: $zindex-topnav;
   }
   #layoutSidenav {
     #layoutSidenav_nav {
-      @extend .fixed-top;
       width: $sidenav-base-width;
       height: 100vh;
       z-index: $zindex-sidenav;
@@ -19,7 +19,8 @@
     #layoutSidenav_content {
 
       top: $topnav-base-height;
-      overflow-y: scroll;
+      background-color:white
+
     }
   }
 }
