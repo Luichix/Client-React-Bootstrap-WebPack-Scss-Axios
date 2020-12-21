@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Spinner, Button, Modal } from 'react-bootstrap'
-import Recruitment from '../form/Recruitment'
-import Service from './../../services/Service'
+import Recruitment from '../form/recruitment'
+import Service from '../../services/service'
 import BootstrapTable from 'react-bootstrap-table-next'
 import PaginationFactory from 'react-bootstrap-table2-paginator'
 

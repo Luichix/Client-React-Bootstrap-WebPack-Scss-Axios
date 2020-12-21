@@ -1,6 +1,6 @@
 /* eslint-disable multiline-ternary */
 import React, { useState } from 'react'
-import Service from '../../services/Service'
+import Service from '../../services/service'
 import { Form, Button, Col, Container } from 'react-bootstrap'
 
 const Recruitment = () => {

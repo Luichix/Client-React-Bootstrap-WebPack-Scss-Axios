@@ -4,11 +4,12 @@ import {
   Switch,
   Route
 } from 'react-router-dom'
-import NavBar from '../component/navigation/Navbar'
-import Footer from '../component/navigation/Footer'
-import Staff from '../component/tables/Staff'
+import NavBar from './navigation/navbar'
+import Footer from './navigation/footer'
+import Staff from './tables/staff'
+import Main from './complement/main'
 
-function Dashboard () {
+function Home () {
   return (
         <div className="sb-nav-fixed">
             <Router>
@@ -17,6 +18,7 @@ function Dashboard () {
                     <div id="layoutSidenav_content">
                         <Switch>
                         <Route path='/staff' component={Staff} />
+                        <Route path='/' exact component={Main} />
                         </Switch>
                         <Footer />
                     </div>
@@ -26,4 +28,4 @@ function Dashboard () {
   )
 }
 
-export default Dashboard
+export default Home
