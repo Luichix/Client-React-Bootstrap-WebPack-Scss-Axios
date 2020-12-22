@@ -1,34 +1,36 @@
 import React from 'react'
-import { Dropdown, Navbar } from 'react-bootstrap'
-import { FaAccessibleIcon } from 'react-icons/fa'
-import logo from '../../assets/logo.svg'
-
-function NavBar () {
+import { Container, Row, Col, Button } from 'react-bootstrap'
+import cohete from './../../assets/rocket.svg'
+function Navbar () {
   return (
-        <Navbar bg="dark" variant="dark" fixed="top">
-    <Navbar.Brand href="/">
-      <img
-        alt=""
-        src={logo}
-        width="30"
-        height="30"
-        className="d-inline-block align-top"
-      />
-      {' '}
-      React Bootstrap
-    </Navbar.Brand>
-<Dropdown>
-  <Dropdown.Toggle variant="dark" id="dropdown-basic">
-    <FaAccessibleIcon />
-  </Dropdown.Toggle>
-  <Dropdown.Menu>
-    <Dropdown.Item href="#/action-1">Setting</Dropdown.Item>
-    <Dropdown.Item href="#/action-2">Activity Log</Dropdown.Item>
-    <Dropdown.Item href="#/action-3">Logout</Dropdown.Item>
-  </Dropdown.Menu>
-</Dropdown>
-  </Navbar>
+      <nav className='grid-navbar' >
+        <Container >
+          <Row>
+            <Col className="col-navbar">
+             <img
+              src={cohete}
+              width='250px'
+              heigth='250px'
+              />
+          </Col>
+          <Col>
+          <h1>
+              <b>¿Quieres facilitar tu trabajo?</b>
+              </h1>
+            <p>
+              Puedes lograrlo con nuestro <b>Sistema de Nomina</b>
+            </p>
+
+            <Button className="btn">
+              <b>Contactar</b>
+            </Button>
+
+          </Col>
+          </Row>
+
+        </Container>
+    </nav>
   )
 }
 
-export default NavBar
+export default Navbar
